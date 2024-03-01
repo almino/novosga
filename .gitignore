@@ -1,7 +1,9 @@
-config/app.php
-nbproject/
-modules/*
+.direnv/
 .env
+config/app.php
+init.sql
+modules/*
+nbproject/
 
 ###> symfony/framework-bundle ###
 /.env.local
