@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -eux
+
+screen -dmS mercure sh -c "mercure run"

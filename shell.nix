@@ -3,6 +3,7 @@
 
 pkgs.mkShell {
   packages = with pkgs; [
+    mercure
     php82
     php82Extensions.bcmath
     php82Extensions.gettext
@@ -15,5 +16,6 @@ pkgs.mkShell {
     php82Packages.phan
     php82Packages.php-cs-fixer
     php82Packages.phpcs
+    screen
   ];
 }
