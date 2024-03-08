@@ -8,6 +8,6 @@ file=$dir/prod.log
 
 if [ -f $file ]; then
   sudo mv $file $dir/$(date +"%Y-%m-%d--%H-%M-%S").prod.log
-  :>> $file
-  chown 989:33 $file
+  sudo sh -c ":>> $file"
+  sudo /run/current-system/sw/bin/chown 989:33 $file
 fi
