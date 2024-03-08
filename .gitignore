@@ -4,6 +4,8 @@ config/app.php
 init.sql
 modules/*
 nbproject/
+public/info.php
+sessions/
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -14,3 +16,7 @@ nbproject/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

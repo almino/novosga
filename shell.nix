@@ -5,17 +5,10 @@ pkgs.mkShell {
   packages = with pkgs; [
     mercure
     php82
-    php82Extensions.bcmath
-    php82Extensions.gettext
-    php82Extensions.intl
-    php82Extensions.mysqli
-    php82Extensions.opcache
-    php82Extensions.pdo
-    php82Extensions.pdo_mysql
     php82Packages.composer
     php82Packages.phan
     php82Packages.php-cs-fixer
     php82Packages.phpcs
     screen
-  ];
+  ] ++ import ./nix/php-extensions.nix pkgs.php82Extensions;
 }
