@@ -2,13 +2,14 @@ extensions:
 
 with extensions; [
   ctype
-  # bcmath
+  dom
   filter
-  # gettext
   mysqli
   # opcache
   pdo
-  # pdo_mysql
+  pdo_mysql
   session
   simplexml
+  xml
+  zlib
 ]
