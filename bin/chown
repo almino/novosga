@@ -8,6 +8,8 @@ actualChown=/run/current-system/sw/bin/chown
 sudo $actualChown -Rf 989:33 $rootDir
 sudo $actualChown -Rf 1000:33 $scriptDir
 sudo $actualChown -Rf 1000:33 $rootDir/.git
+sudo $actualChown -Rf 1000:33 $rootDir/*.nix
+sudo $actualChown -Rf 1000:33 $rootDir/nix
 
 sudo chmod -Rf g+w $rootDir
 sudo chmod -Rf a+x $scriptDir/*
