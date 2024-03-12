@@ -16,6 +16,13 @@ today=$(date +"Y-m-d")
 
 # Extract the date from the file name and compare it with the current date
 for logFile in $dir/*.prod.log; do
+  fileSize=$(stat -c %s "$logFile")
+
+  if [[ $fileSize == 0 ]]; then
+    sudo rm -Rf $logFile
+    continue
+  fi
+
   currentFile=$(basename "$logFile")
   fileDate=${currentFile:0:10}
 
@@ -39,7 +46,7 @@ done
 
 file=$dir/prod.log
 if [ -f $file ]; then
-  mv $file $dir/$(date +"%Y-%m-%d--%H-%M-%S").prod.log
-  sh -c ":>> $file"
-  # /run/current-system/sw/bin/chown 989:33 $file
+  sudo mv $file $dir/$(date +"%Y-%m-%d--%H-%M-%S").prod.log
+  sudo sh -c ":>> $file"
+  sudo /run/current-system/sw/bin/chown 989:33 $file
 fi
