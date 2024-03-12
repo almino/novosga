@@ -4,10 +4,42 @@ set -eux
 scriptDir=$(dirname "$0")
 rootDir="$(dirname "$scriptDir")"
 dir="$rootDir/var/log"
-file=$dir/prod.log
 
+find $dir -name "*.prod.log" -type f -mtime +10 -delete
+
+# Pega o log mais antigo
+previousFilePath=$(ls -rt $dir/*.prod.log | head -n 1)
+prevLastMod=$(stat -c %Y "$previousFilePath")
+previousFileName=$(basename $previousFilePath)
+date=${previousFileName:0:10}
+today=$(date +"Y-m-d")
+
+# Extract the date from the file name and compare it with the current date
+for logFile in $dir/*.prod.log; do
+  currentFile=$(basename "$logFile")
+  fileDate=${currentFile:0:10}
+
+  if [[ $date == $today ]] then
+    break
+  fi
+
+  if [[ $fileDate == $date ]]; then
+    lastMod=$(stat -c %Y "$logFile")
+    if [[ $lastMod > $prevLastMod ]]; then
+      previousFilePath=$logFile
+      previousFileName=$currentFile
+      prevLastMod=$lastMod
+
+      rm $logFile
+    fi
+  else
+    date=$fileDate
+  fi
+done
+
+file=$dir/prod.log
 if [ -f $file ]; then
-  sudo mv $file $dir/$(date +"%Y-%m-%d--%H-%M-%S").prod.log
-  sudo sh -c ":>> $file"
-  sudo /run/current-system/sw/bin/chown 989:33 $file
+  mv $file $dir/$(date +"%Y-%m-%d--%H-%M-%S").prod.log
+  sh -c ":>> $file"
+  # /run/current-system/sw/bin/chown 989:33 $file
 fi
