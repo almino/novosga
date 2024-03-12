@@ -1,0 +1,9 @@
+session_name: sga
+start_directory: ./ # load session relative to config location (project root).
+windows:
+  - window_name: dev server
+    layout: tiled
+    panes:
+      - shell_command: # pane no. 1
+          - bin/rotate-log
+          - ssh qemu
