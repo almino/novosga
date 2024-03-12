@@ -10,6 +10,7 @@ with extensions; [
   pdo_mysql
   session
   simplexml
+  tokenizer
   xml
   zlib
 ]
