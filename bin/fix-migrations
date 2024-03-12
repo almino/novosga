@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -eux
+scriptDir=$(dirname "$0")
+rootDir="$(dirname "$scriptDir")"
+
+sed -i '22s/CREATE TABLE clientes_metadata/CREATE TABLE IF NOT EXISTS clientes_metadata/' $rootDir/migrations/Version20210326134543.php \
+&& sed -i '23s/\(\$this->\)/#\1/' $rootDir/migrations/Version20210326134543.php \
+&& sed -i '24s/\(\$this->\)/#\1/' $rootDir/migrations/Version20210326134543.php \
+&& sed -i '25s/\(\$this->\)/#\1/' $rootDir/migrations/Version20210326134543.php \
+&& sed -i '28s/\(\$this->\)/#\1/' $rootDir/migrations/Version20210326134543.php \
+&& sed -i '29s/\(\$this->\)/#\1/' $rootDir/migrations/Version20210326134543.php \
+&& sed -i '30s/\(\$this->\)/#\1/' $rootDir/migrations/Version20210326134543.php \
+&& sed -i '24s/BCryptPasswordEncoder/NativePasswordEncoder/' $rootDir/src/Command/InstallCommand.php \
+&& sed -i '298s/BCryptPasswordEncoder(12)/NativePasswordEncoder(null, null, 12)/' $rootDir/src/Command/InstallCommand.php

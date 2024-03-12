@@ -1,6 +1,7 @@
 .direnv/
 .env
 config/app.php
+config/secrets/
 init.sql
 modules/*
 nbproject/
