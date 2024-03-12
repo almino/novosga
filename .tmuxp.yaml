@@ -6,4 +6,4 @@ windows:
     panes:
       - shell_command: # pane no. 1
           - bin/rotate-log
-          - ssh qemu
+          - ssh qemu -t 'cd /mnt/1tb/web-apps/sga/; exec fish'
